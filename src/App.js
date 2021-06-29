@@ -17,7 +17,7 @@ function App() {
       <h1 className='title'>To-Do List</h1>
       <div className="input-box">
         <input placeholder='Enter Items Here...' onKeyPress={e => (e.key==="Enter")&&addItem()} value={current} onChange={e => setCurrent(e.target.value)} className='input-field' type="text" name="" id="" />
-        <button className='btn' onClick={addItem}>Add</button>
+        <button className='btn' onClick={addItem}>Add(↵)</button>
       </div>
       <div className="output-box">
         <ul className="list">
