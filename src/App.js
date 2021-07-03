@@ -1,15 +1,22 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
   const [current, setCurrent] = useState("")
   const [list,setList] = useState([])
 
+  useEffect(() =>{
+    if(localStorage.getItem("items")){
+      setList(localStorage.getItem("items").split(","))
+    }
+  },[])
+
   const addItem = () => {
     if(!current) return
     let items= [...list,current]
     setList(items)
     setCurrent("")
+    localStorage.setItem("items",items)
   }
 
   return (
@@ -23,7 +30,7 @@ function App() {
         <ul className="list">
           {
             list.length ? 
-            list.map(item => <li>{item}</li> )
+            list.map((item,i) => <li key={i}>{item}</li> )
             :
             <p className='output-placeholder'> Your List-Items Will Appear Here...</p>      
           }
